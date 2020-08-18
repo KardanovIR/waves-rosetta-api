@@ -19,6 +19,10 @@ Docker image build process is described [here](https://github.com/wavesplatform/
 docker run -v /docker/waves/waves-data:/var/lib/waves -v /docker/waves/waves-config:/etc/waves -p 6869:6869 -p 6862:6862 -p 8080:8080 -e JAVA_OPTS="-Dwaves.rest-api.enable=yes -Dwaves.rest-api.bind-address=0.0.0.0 -Dwaves.wallet.password=myWalletSuperPassword" -e WAVES_NETWORK=stagenet -ti wavesplatform/wavesnode
 ```
 
+### Calling API
+
+API call examples are shown [here](https://www.getpostman.com/collections/f09f5a7b80c6a357b5c2).
+
 ### Configuration
 
 Waves node image configuration process is described [here](https://github.com/wavesplatform/Waves/blob/master/docker/README.md#environment-variables)

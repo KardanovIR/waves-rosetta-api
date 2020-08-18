@@ -5,25 +5,25 @@ Waves node with Rosetta API compatible middleware
 ## Overview 
 This middleware implements [Rosetta API](https://rosetta-api.com) specifications for Waves blockchain.
 
-The docker image inherits settings from [Waves Node Docker Image](https://github.com/wavesplatform/node-docker-image).
+The docker image inherits settings from [Waves Node Docker Image](https://github.com/wavesplatform/Waves/blob/master/docker/README.md).
 
 ## Usage
 
 ### Build docker image
 
-```sh
-docker build . -t waves-rosetta-api
-``` 
+Docker image build process is described [here](https://github.com/wavesplatform/Waves/blob/master/docker/README.md#building-docker-image).
 
 ### Running docker image
 
 ```sh
-docker run --name waves-rosetta -d -v  $(realpath Log):/data/Log -v $(realpath Chain):/data/Chain -v $(realpath rosetta-config.json):/data/rosetta-config.json -p 9090:8080 waves-rosetta-api:latest
+docker run -v /docker/waves/waves-data:/var/lib/waves -v /docker/waves/waves-config:/etc/waves -p 6869:6869 -p 6862:6862 -p 8080:8080 -e JAVA_OPTS="-Dwaves.rest-api.enable=yes -Dwaves.rest-api.bind-address=0.0.0.0 -Dwaves.wallet.password=myWalletSuperPassword" -e WAVES_NETWORK=stagenet -ti wavesplatform/wavesnode
 ```
 
 ### Configuration
 
+Waves node image configuration process is described [here](https://github.com/wavesplatform/Waves/blob/master/docker/README.md#environment-variables)
 
+Middleware configuration is stored in `.env` file 
 
 ## Tests
 

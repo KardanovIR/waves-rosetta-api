@@ -11,12 +11,19 @@ The docker image inherits settings from [Waves Node Docker Image](https://github
 
 ### Build docker image
 
-Docker image build process is described [here](https://github.com/wavesplatform/Waves/blob/master/docker/README.md#building-docker-image).
+The simplest way to build an image is to run the following command:
+
+```sh
+docker build . -t waves-rosetta-api
+```
+
+Additional properties are described [here](https://github.com/wavesplatform/Waves/blob/master/docker/README.md#building-docker-image).
 
 ### Running docker image
 
 ```sh
-docker run -v /docker/waves/waves-data:/var/lib/waves -v /docker/waves/waves-config:/etc/waves -p 6869:6869 -p 6862:6862 -p 8080:8080 -e JAVA_OPTS="-Dwaves.rest-api.enable=yes -Dwaves.rest-api.bind-address=0.0.0.0 -Dwaves.wallet.password=myWalletSuperPassword" -e WAVES_NETWORK=stagenet -ti wavesplatform/wavesnode
+docker run -v /waves-data:/var/lib/waves -v waves-config:/etc/waves -p 6869:6869 -p 6862:6862 -p 8080:8080 -e JAVA_OPTS="-Dwaves.rest-api.enable=yes -Dwaves.rest-api.bind-address=0.0.0.0 -Dwaves.rest-api.port=6869  -Dwaves.wallet.password=myWalletSuperPassword" -e WAVES_NETWORK=stagenet -ti waves-rosetta-api
+
 ```
 
 ### Calling API

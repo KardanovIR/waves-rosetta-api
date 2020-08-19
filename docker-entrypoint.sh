@@ -1,17 +1,19 @@
-#!/bin/sh
+#!/bin/bash
 
+# Run nodejs
+cd /usr/src/app/dist/ && forever start server.js
 NETWORKS="mainnet testnet stagenet"
-
 mkdir -p /var/lib/waves/log
+
 if [ ! -f /etc/waves/waves.conf ]; then
   echo "Custom '/etc/waves/waves.conf' not found. Using a default one for '${WAVES_NETWORK,,}' network." | tee -a /var/log/waves/waves.log
   if [[ $NETWORKS == *"${WAVES_NETWORK,,}"* ]]; then
     cp /usr/share/waves/conf/waves-${WAVES_NETWORK}.conf /etc/waves/waves.conf
     sed -i 's/include "local.conf"//' /etc/waves/waves.conf
-    for f in /etc/waves/ext/*.conf; do
-      echo "Adding $f extension config to waves.conf";
-      echo "include required(\"$f\")" >> /etc/waves/waves.conf
-    done
+#    for f in /etc/waves/ext/*.conf; do
+#      echo "Adding $f extension config to waves.conf";
+#      echo "include required(\"$f\")" >> /etc/waves/waves.conf
+#    done
     echo 'include "local.conf"' >> /etc/waves/waves.conf
   else
     echo "Network '${WAVES_NETWORK,,}' not found. Exiting."
@@ -49,12 +51,3 @@ exec java -Dlogback.stdout.level=${WAVES_LOG_LEVEL} \
   -cp "/usr/share/waves/lib/plugins/*:/usr/share/waves/lib/*" \
   com.wavesplatform.Application \
   /etc/waves/waves.conf
-
-
-set -e
-
-if [ "${1#-}" != "${1}" ] || [ -z "$(command -v "${1}")" ]; then
-  set -- node "$@"
-fi
-
-exec "$@"

@@ -3,7 +3,7 @@
 Waves node with Rosetta API compatible middleware
 
 ## Overview 
-This middleware implements [Rosetta API](https://rosetta-api.com) specifications for Waves blockchain.
+This middleware implements [Rosetta API](https://rosetta-api.org) specifications for Waves blockchain.
 
 The docker image inherits settings from [Waves Node Docker Image](https://github.com/wavesplatform/Waves/blob/master/docker/README.md).
 

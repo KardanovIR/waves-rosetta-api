@@ -73,7 +73,7 @@ const getNetworkOptions = async (req: Request, res: Response, next: NextFunction
         const errors = [];
 
         for (let item in ErrorCodes) {
-            if (!Number(item)) return;
+            if (!Number(item)) continue;
             errors.push({
                 code: Number(item),
                 message: ErrorCodes[item],
@@ -90,9 +90,7 @@ const getNetworkOptions = async (req: Request, res: Response, next: NextFunction
                 metadata: {}
             },
             allow: {
-                operation_statuses: [
-                    Object.values(OperationStatuses)
-                ],
+                operation_statuses: Object.values(OperationStatuses),
                 operation_types: [
                     OperationTypes.Transfer
                 ],

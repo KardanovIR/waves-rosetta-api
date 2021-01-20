@@ -12,7 +12,7 @@ export enum OperationStatusValues {
 
 export const OperationStatuses = {
     Success: {
-        value: OperationStatusValues.Success,
+        status: OperationStatusValues.Success,
         successful: true
     }
 }
